@@ -35,9 +35,12 @@ const player = new Fighter({
         y: 0
     },
     color: 'red',
+    imageSource: './assets/player/Idle.png',
+    frames: 10,
+    scale: 5.5,
     offset: {
-        x: 0,
-        y: 0
+        x: 350,
+        y: 300
     }
 })
 
@@ -80,7 +83,7 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     bg.update()
     player.update()
-    enemy.update()
+    //enemy.update()
     bg_wheel.draw()
 
     // Player Movement
