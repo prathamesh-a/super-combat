@@ -3,9 +3,11 @@ const ctx = canvas.getContext("2d")
 
 ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-const gravity = 0.5
+// CONFIG
+const gravity = 0.5;
 const playerSpeed = 4;
-const attackDamange = 20
+const attackDamange = 20;
+let time = 60;
 
 class Sprite {
     constructor({position, velocity, color, offset}) {
@@ -124,6 +126,35 @@ function rectangularCollision({rectangle1, rectangle2}) {
     )
 }
 
+function getWinner({player, enemy, timerId}) {
+    clearTimeout(timerId)
+    document.querySelector('#endLable').style.display = 'flex'
+    if (player.health === enemy.health) {
+        document.querySelector('#endLable').innerHTML = 'TIE'
+    }
+    else if (player.health > enemy.health) {
+        document.querySelector('#endLable').innerHTML = 'RED WON!'
+    }
+    else if (player.health < enemy.health) {
+        document.querySelector('#endLable').innerHTML = 'BLUE WON!'
+    }
+}
+
+let timerId
+
+function timeOut() {
+    if (time > 0) {
+        timerId = setTimeout(timeOut, 1000)
+        time--
+        document.querySelector('#timer').innerHTML = time
+    }
+    else {
+        getWinner({player, enemy, timerId});
+    }
+}
+
+timeOut()
+
 function animate() {
     window.requestAnimationFrame(animate)
     ctx.fillStyle = 'black'
@@ -155,7 +186,6 @@ function animate() {
         player.isAttacking = false
         enemy.health -= attackDamange
         document.querySelector('#enemyHealth').style.width = enemy.health + '%'
-        console.log("Red attacked Blue!")
     }
 
     // Enemy Collision Detection
@@ -166,8 +196,10 @@ function animate() {
         enemy.isAttacking = false
         player.health -= attackDamange
         document.querySelector('#playerHealth').style.width = player.health + '%'
-        console.log("Blue attacked Red!")
     }
+
+    // Game End
+    if(player.health <=0 || enemy.health<=0) getWinner({player, enemy, timerId});
 
 }
 
