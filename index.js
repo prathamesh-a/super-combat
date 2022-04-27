@@ -62,9 +62,20 @@ const player = new Fighter({
         attack: {
             imageSource: './assets/player/Attack.png',
             frames: 4
+        },
+        hit: {
+            imageSource: './assets/player/Hit.png',
+            frames: 3
         }
     },
-    
+    attackBox: {
+        offset: {
+            x: 80,
+            y: -50
+        },
+        width: 220,
+        height: 120
+    }
 })
 
 const enemy = new Fighter({
@@ -104,7 +115,19 @@ const enemy = new Fighter({
         attack: {
             imageSource: './assets/enemy/Attack.png',
             frames: 4
+        },
+        hit: {
+            imageSource: './assets/enemy/Hit.png',
+            frames: 3
         }
+    },
+    attackBox: {
+        offset: {
+            x: -190,
+            y: 0
+        },
+        width: 170,
+        height: 120
     }
 })
 
@@ -176,21 +199,27 @@ function animate() {
     if (rectangularCollision({
         rectangle1: player,
         rectangle2: enemy
-    }) && player.isAttacking) {
+    }) && player.isAttacking && player.currentFrame === 2) {
+        enemy.takeHit()
         player.isAttacking = false
-        enemy.health -= attackDamange
         document.querySelector('#enemyHealth').style.width = enemy.health + '%'
     }
+
+    // Player Empty Attack Detection
+    if (player.isAttacking && player.currentFrame === 2) player.isAttacking = false
 
     // Enemy Collision Detection
     if (rectangularCollision({
         rectangle1: enemy,
         rectangle2: player
-    }) && enemy.isAttacking) {
+    }) && enemy.isAttacking && enemy.currentFrame === 1) {
+        player.takeHit()
         enemy.isAttacking = false
-        player.health -= attackDamange
         document.querySelector('#playerHealth').style.width = player.health + '%'
     }
+
+    // Enemy Empty Attack Detection
+    if (enemy.isAttacking && enemy.currentFrame === 1) enemy.isAttacking = false
 
     // Game End
     if(player.health <=0 || enemy.health<=0) {

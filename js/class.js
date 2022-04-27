@@ -92,8 +92,8 @@ class Fighter extends Sprite{
         this.animateFrame()
 
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x
-        this.attackBox.position.y = this.position.y
-        ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+        this.attackBox.position.y = this.position.y + this.attackBox.offset.y
+       //ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
@@ -113,13 +113,20 @@ class Fighter extends Sprite{
     attack() {
         this.switchSprite('attack')
         this.isAttacking = true
-        setTimeout(() => {
-            this.isAttacking = false
-        }, 100)
+        // setTimeout(() => {
+        //     this.isAttacking = false
+        // }, 100)
+    }
+
+    takeHit(){
+        this.switchSprite('hit')
+        this.health -= attackDamange
     }
 
     switchSprite(sprite) {
         if (this.image === this.sprites.attack.image && this.currentFrame < this.sprites.attack.frames-1) return
+        if (this.image === this.sprites.hit.image && this.currentFrame < this.sprites.hit.frames-1) return
+
         switch (sprite) {
             case 'idle':
                 if (this.image !== this.sprites.idle.image){
@@ -153,6 +160,13 @@ class Fighter extends Sprite{
                 if (this.image !== this.sprites.attack.image){
                     this.image = this.sprites.attack.image
                     this.frames = this.sprites.attack.frames
+                    this.currentFrame = 0
+                }
+                break
+            case 'hit':
+                if (this.image !== this.sprites.hit.image){
+                    this.image = this.sprites.hit.image
+                    this.frames = this.sprites.hit.frames
                     this.currentFrame = 0
                 }
                 break
