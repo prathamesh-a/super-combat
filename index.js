@@ -14,7 +14,15 @@ const bg = new BG({
         x: 0,
         y: 0
     },
-    imageSource: './assets/bg.png'
+    imageSource: './assets/bg/bg.png'
+})
+
+const bg_wheel = new Sprite({
+    position:{
+        x: 0,
+        y: 0
+    },
+    imageSource: './assets/bg/bg_wheel.png'
 })
 
 const player = new Fighter({
@@ -73,6 +81,7 @@ function animate() {
     bg.update()
     player.update()
     enemy.update()
+    bg_wheel.draw()
 
     // Player Movement
     player.velocity.x = 0
