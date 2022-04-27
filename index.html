@@ -3,6 +3,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
 </head>
 <body>
     <div id="parentRect">
@@ -20,7 +21,13 @@
                 <div id="enemyHealth"></div>
             </div>
         </div>
-        <div id="endLable">TIE</div>
+        <div id="endMenu">
+            <div>
+                <p id="endLable"></p>
+<!--                <button id="play_again">PLAY AGAIN</button>-->
+                <a id="play_again" class="nes-btn" href="">PLAY AGAIN</a>
+            </div>
+        </div>
         <canvas width="1024px" height="576px"></canvas>
     </div>
     <script src="js/config.js"></script>

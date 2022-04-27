@@ -31,7 +31,7 @@
 
 }
 
-#endLable{
+#endMenu{
     position: absolute;
     color: white;
     align-items: center;
@@ -41,8 +41,13 @@
     bottom: 0;
     left: 0;
     display: none;
+
+}
+
+#endLable{
     font-size: 60px;
     font-weight: bold;
+    text-shadow: 0 0 10px #4d3533;
 }
 
 canvas{
@@ -84,4 +89,10 @@ canvas{
     left: 0;
     border-radius: 10px;
     border: 6px solid #4d3533;
+}
+
+#play_again{
+    width: 200px;
+    /*height: 40px;*/
+    margin-left: 35%;
 }

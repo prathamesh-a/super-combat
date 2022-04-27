@@ -155,6 +155,8 @@ function animate() {
     ctx.fillStyle = 'black'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     bg.update()
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.15)'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
     enemy.update()
     bg_wheel.draw()
