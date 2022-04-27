@@ -5,6 +5,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height)
 
 const gravity = 0.5
 const playerSpeed = 4;
+const attackDamange = 20
 
 class Sprite {
     constructor({position, velocity, color, offset}) {
@@ -16,6 +17,7 @@ class Sprite {
         this.isOnGround
         this.color = color
         this.isAttacking
+        this.health = 100
         this.attackBox = {
             position: {
                 x: this.position.x,
@@ -68,8 +70,8 @@ class Sprite {
 
 const player = new Sprite({
     position:{
-        x: 0,
-        y: 0
+        x: 110,
+        y: 180
     },
     velocity:{
         x: 0,
@@ -84,8 +86,8 @@ const player = new Sprite({
 
 const enemy = new Sprite({
     position:{
-        x: 400,
-        y: 100
+        x: 850,
+        y: 180
     },
     velocity:{
         x: 0,
@@ -151,6 +153,8 @@ function animate() {
         rectangle2: enemy
     }) && player.isAttacking) {
         player.isAttacking = false
+        enemy.health -= attackDamange
+        document.querySelector('#enemyHealth').style.width = enemy.health + '%'
         console.log("Red attacked Blue!")
     }
 
@@ -160,6 +164,8 @@ function animate() {
         rectangle2: player
     }) && enemy.isAttacking) {
         enemy.isAttacking = false
+        player.health -= attackDamange
+        document.querySelector('#playerHealth').style.width = player.health + '%'
         console.log("Blue attacked Red!")
     }
 
