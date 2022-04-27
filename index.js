@@ -58,8 +58,13 @@ const player = new Fighter({
         fall: {
             imageSource: './assets/player/Fall.png',
             frames: 2
+        },
+        attack: {
+            imageSource: './assets/player/Attack.png',
+            frames: 4
         }
-    }
+    },
+    
 })
 
 const enemy = new Fighter({
@@ -72,9 +77,34 @@ const enemy = new Fighter({
         y: 0
     },
     color: 'blue',
+    imageSource: './assets/enemy/Idle.png',
+    frames: 6,
+    scale: 2.9,
     offset: {
-        x: -50,
-        y: 0
+        x: 260,
+        y: 185
+    },
+    sprites: {
+        idle: {
+            imageSource: './assets/enemy/Idle.png',
+            frames: 6
+        },
+        run: {
+            imageSource: './assets/enemy/Run.png',
+            frames: 8
+        },
+        jump: {
+            imageSource: './assets/enemy/Jump.png',
+            frames: 2
+        },
+        fall: {
+            imageSource: './assets/enemy/Fall.png',
+            frames: 2
+        },
+        attack: {
+            imageSource: './assets/enemy/Attack.png',
+            frames: 4
+        }
     }
 })
 
@@ -101,7 +131,7 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     bg.update()
     player.update()
-    //enemy.update()
+    enemy.update()
     bg_wheel.draw()
 
     // Player Movement
@@ -127,8 +157,19 @@ function animate() {
     enemy.velocity.x = 0
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft' && enemy.position.x > 0) {
         enemy.velocity.x = -playerSpeed
+        enemy.switchSprite('run')
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && enemy.position.x < canvas.width-50){
         enemy.velocity.x = playerSpeed
+        enemy.switchSprite('run')
+    } else {
+        enemy.switchSprite('idle')
+    }
+
+    // Enemy Jump Animation
+    if (enemy.velocity.y < 0){
+        enemy.switchSprite('jump')
+    } else if (enemy.velocity.y > 0) {
+        enemy.switchSprite('fall')
     }
 
     // Player Collision Detection

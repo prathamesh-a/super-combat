@@ -48,7 +48,8 @@ class Fighter extends Sprite{
                     scale = 1,
                     frames = 1,
                     offset={x:0, y:0},
-                    sprites
+                    sprites,
+                    attackBox = {offset: {}, width: undefined, height: undefined}
     }) {
         super({
             position,
@@ -74,9 +75,9 @@ class Fighter extends Sprite{
                 x: this.position.x,
                 y: this.position.y
             },
-            offset,
-            width: 100,
-            height: 50
+            offset: attackBox.offset,
+            width: attackBox.width,
+            height: attackBox.height
         }
         this.sprites = sprites
 
@@ -88,11 +89,11 @@ class Fighter extends Sprite{
 
     update() {
         this.draw()
-
         this.animateFrame()
 
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x
         this.attackBox.position.y = this.position.y
+        ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
@@ -110,6 +111,7 @@ class Fighter extends Sprite{
     }
 
     attack() {
+        this.switchSprite('attack')
         this.isAttacking = true
         setTimeout(() => {
             this.isAttacking = false
@@ -117,6 +119,7 @@ class Fighter extends Sprite{
     }
 
     switchSprite(sprite) {
+        if (this.image === this.sprites.attack.image && this.currentFrame < this.sprites.attack.frames-1) return
         switch (sprite) {
             case 'idle':
                 if (this.image !== this.sprites.idle.image){
@@ -143,6 +146,13 @@ class Fighter extends Sprite{
                 if (this.image !== this.sprites.fall.image){
                     this.image = this.sprites.fall.image
                     this.frames = this.sprites.fall.frames
+                    this.currentFrame = 0
+                }
+                break
+            case 'attack':
+                if (this.image !== this.sprites.attack.image){
+                    this.image = this.sprites.attack.image
+                    this.frames = this.sprites.attack.frames
                     this.currentFrame = 0
                 }
                 break
