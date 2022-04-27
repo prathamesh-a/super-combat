@@ -20,7 +20,6 @@ class Sprite {
             else this.currentFrame = 0;
         }
     }
-
     draw() {
         ctx.drawImage(
             this.image,
@@ -42,7 +41,15 @@ class Sprite {
 }
 
 class Fighter extends Sprite{
-    constructor({position, velocity, color, imageSource, scale = 1, frames = 1, offset={x:0, y:0}}) {
+    constructor({position,
+                    velocity,
+                    color,
+                    imageSource,
+                    scale = 1,
+                    frames = 1,
+                    offset={x:0, y:0},
+                    sprites
+    }) {
         super({
             position,
             imageSource,
@@ -71,6 +78,12 @@ class Fighter extends Sprite{
             width: 100,
             height: 50
         }
+        this.sprites = sprites
+
+        for (const sprite in this.sprites){
+            sprites[sprite].image = new Image()
+            sprites[sprite].image.src = sprites[sprite].imageSource
+        }
     }
 
     update() {
@@ -84,8 +97,10 @@ class Fighter extends Sprite{
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
 
+        // Entity Gravity
         if (this.position.y + this.height + this.velocity.y >= canvas.height-45){
             this.velocity.y = 0
+            this.position.y = 381
             this.isOnGround = true
         }
         else {
@@ -99,6 +114,39 @@ class Fighter extends Sprite{
         setTimeout(() => {
             this.isAttacking = false
         }, 100)
+    }
+
+    switchSprite(sprite) {
+        switch (sprite) {
+            case 'idle':
+                if (this.image !== this.sprites.idle.image){
+                    this.image = this.sprites.idle.image
+                    this.frames = this.sprites.idle.frames
+                    this.currentFrame = 0
+                }
+                break
+            case 'run':
+                if (this.image !== this.sprites.run.image){
+                    this.frames = this.sprites.run.frames
+                    this.image = this.sprites.run.image
+                    this.currentFrame = 0
+                }
+                break
+            case 'jump':
+                if (this.image !== this.sprites.jump.image){
+                    this.image = this.sprites.jump.image
+                    this.frames = this.sprites.jump.frames
+                    this.currentFrame = 0
+                }
+                break
+            case 'fall':
+                if (this.image !== this.sprites.fall.image){
+                    this.image = this.sprites.fall.image
+                    this.frames = this.sprites.fall.frames
+                    this.currentFrame = 0
+                }
+                break
+        }
     }
 }
 

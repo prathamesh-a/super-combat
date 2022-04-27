@@ -41,6 +41,24 @@ const player = new Fighter({
     offset: {
         x: 350,
         y: 300
+    },
+    sprites: {
+        idle: {
+            imageSource: './assets/player/Idle.png',
+            frames: 10
+        },
+        run: {
+            imageSource: './assets/player/Run.png',
+            frames: 6
+        },
+        jump: {
+            imageSource: './assets/player/Jump.png',
+            frames: 2
+        },
+        fall: {
+            imageSource: './assets/player/Fall.png',
+            frames: 2
+        }
     }
 })
 
@@ -90,8 +108,19 @@ function animate() {
     player.velocity.x = 0
     if (keys.a.pressed && player.lastKey === 'a' && player.position.x > 0) {
         player.velocity.x = -playerSpeed
+        player.switchSprite('run')
     } else if (keys.d.pressed && player.lastKey === 'd' && player.position.x < canvas.width-50){
         player.velocity.x = playerSpeed
+        player.switchSprite('run')
+    } else {
+        player.switchSprite('idle')
+    }
+
+    // Player Jump Animation
+    if (player.velocity.y < 0){
+        player.switchSprite('jump')
+    } else if (player.velocity.y > 0) {
+        player.switchSprite('fall')
     }
 
     // Enemy Movement
