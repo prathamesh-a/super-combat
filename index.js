@@ -3,12 +3,6 @@ const ctx = canvas.getContext("2d")
 
 ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-// CONFIG
-const gravity = 0.5;
-const playerSpeed = 4;
-const attackDamange = 20;
-let time = 60;
-
 const bg = new BG({
     position: {
         x: 0,
@@ -66,6 +60,10 @@ const player = new Fighter({
         hit: {
             imageSource: './assets/player/Hit.png',
             frames: 3
+        },
+        death: {
+            imageSource: './assets/player/Death.png',
+            frames: 9
         }
     },
     attackBox: {
@@ -119,6 +117,10 @@ const enemy = new Fighter({
         hit: {
             imageSource: './assets/enemy/Hit.png',
             frames: 3
+        },
+        death: {
+            imageSource: './assets/enemy/Death1.png',
+            frames: 9
         }
     },
     attackBox: {
@@ -231,38 +233,44 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (e)=>{
-    switch (e.key){
-        // Player Key Listener
-        case 'd':
-            keys.d.pressed = true
-            player.lastKey = 'd'
-            break
-        case 'a':
-            keys.a.pressed = true
-            player.lastKey = 'a'
-            break
-        case 'w':
-            if (player.isOnGround) player.velocity.y = -17
-            break
-        case ' ':
-            player.attack()
-            break
+    if (!player.dead){
+        switch (e.key){
+            // Player Key Listener
+            case 'd':
+                keys.d.pressed = true
+                player.lastKey = 'd'
+                break
+            case 'a':
+                keys.a.pressed = true
+                player.lastKey = 'a'
+                break
+            case 'w':
+                if (player.isOnGround) player.velocity.y = -17
+                break
+            case ' ':
+                player.attack()
+                break
+        }
+    }
 
-        // Enemy Key Listeners
-        case 'ArrowRight':
-            keys.ArrowRight.pressed = true
-            enemy.lastKey = 'ArrowRight'
-            break
-        case 'ArrowLeft':
-            keys.ArrowLeft.pressed = true
-            enemy.lastKey = 'ArrowLeft'
-            break
-        case 'ArrowUp':
-            if (enemy.isOnGround) enemy.velocity.y = -17
-            break
-        case 'ArrowDown':
-            enemy.attack()
-            break
+    if (!enemy.dead){
+        switch (e.key){
+            // Enemy Key Listeners
+            case 'ArrowRight':
+                keys.ArrowRight.pressed = true
+                enemy.lastKey = 'ArrowRight'
+                break
+            case 'ArrowLeft':
+                keys.ArrowLeft.pressed = true
+                enemy.lastKey = 'ArrowLeft'
+                break
+            case 'ArrowUp':
+                if (enemy.isOnGround) enemy.velocity.y = -17
+                break
+            case 'ArrowDown':
+                enemy.attack()
+                break
+        }
     }
 })
 

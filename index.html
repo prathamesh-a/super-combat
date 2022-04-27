@@ -1,25 +1,29 @@
 <head xmlns="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="parentRect">
         <div id="subRect">
             <!--Player Health Bar-->
-            <div style="position: relative; height: 30px; width: 100%; display: flex; justify-content: flex-end">
-                <div style="background: yellow; height: 30px; width: 100%"></div>
-                <div id="playerHealth" style="position: absolute; background: red; top: 0; right: 0; bottom: 0; width: 100%"></div>
+            <div class="playerHealthBar">
+                <div style="background: #4d3533; height: 25px; width: 100%;  border-radius: 10px;"></div>
+                <div id="playerHealth"></div>
             </div>
             <!--Timer-->
             <div id="timer">10</div>
             <!--Enemy Health Bar-->
-            <div style="position: relative; height: 30px; width: 100%;">
-                <div style="background: yellow; height: 30px"></div>
-                <div id="enemyHealth" style="position: absolute; background: blue; top: 0; right: 0; bottom: 0; left: 0"></div>
+            <div class="enemyHealthBar">
+                <div style="background: #4d3533; height: 25px;  border-radius: 10px;"></div>
+                <div id="enemyHealth"></div>
             </div>
         </div>
         <div id="endLable">TIE</div>
         <canvas width="1024px" height="576px"></canvas>
     </div>
+    <script src="js/config.js"></script>
     <script src="js/util.js"></script>
     <script src="js/class.js"></script>
     <script src="index.js"></script>

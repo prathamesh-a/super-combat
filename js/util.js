@@ -16,10 +16,10 @@ function getWinner({player, enemy, timerId}) {
         document.querySelector('#endLable').innerHTML = 'TIE'
     }
     else if (player.health > enemy.health) {
-        document.querySelector('#endLable').innerHTML = 'RED WON!'
+        document.querySelector('#endLable').innerHTML = 'PLAYER 1 WON!'
     }
     else if (player.health < enemy.health) {
-        document.querySelector('#endLable').innerHTML = 'BLUE WON!'
+        document.querySelector('#endLable').innerHTML = 'PLAYER 2 WON!'
     }
 }
 
