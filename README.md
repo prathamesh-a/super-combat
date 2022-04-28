@@ -7,7 +7,7 @@ Live Demo: https://prathamesh-a.github.io/SuperCombat/
 Screen Shots:
 
 1. Main Menu
-![image](https://user-images.githubusercontent.com/89336149/165685552-8129a0e9-6a93-4695-b4b1-68ab22a0dbde.png)
+![image](https://user-images.githubusercontent.com/89336149/165688427-9aa83d78-3865-4924-bdba-c5876dd4d1f7.png)
 
 2. Game Play:
 ![image](https://user-images.githubusercontent.com/89336149/165685673-b852bf84-4e29-4e28-aad8-c4d87daaa4b6.png)
