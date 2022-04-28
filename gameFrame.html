@@ -1,0 +1,43 @@
+<head xmlns="">
+    <title>Super Combat</title>
+    <link rel="icon" type="image/x-icon" href="./assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="game.css">
+    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="parentRect">
+        <div id="subRect">
+            <!--Player Health Bar-->
+            <div class="playerHealthBar">
+                <div style="background: #4d3533; height: 25px; width: 100%;  border-radius: 10px;"></div>
+                <div id="playerHealth"></div>
+            </div>
+            <!--Timer-->
+            <div id="timer">10</div>
+            <!--Enemy Health Bar-->
+            <div class="enemyHealthBar">
+                <div style="background: #4d3533; height: 25px;  border-radius: 10px;"></div>
+                <div id="enemyHealth"></div>
+            </div>
+        </div>
+        <div id="endMenu">
+            <div>
+                <p id="endLable"></p>
+                    <button class="nes-btn" id="play_again" onclick="restartGame()">PLAY AGAIN</button>
+                <button class="nes-btn" id="main-menu" onclick="window.location.replace('index.html')">MAIN MENU</button>
+            </div>
+        </div>
+        <canvas width="1024px" height="576px"></canvas>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+            integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="js/config.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/class.js"></script>
+    <script src="js/game.js"></script>
+</body>

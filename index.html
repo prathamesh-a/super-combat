@@ -1,38 +1,31 @@
-<head xmlns="">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Combat</title>
+    <link rel="icon" type="image/x-icon" href="./assets/icon.png">
+    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
-    <div id="parentRect">
-        <div id="subRect">
-            <!--Player Health Bar-->
-            <div class="playerHealthBar">
-                <div style="background: #4d3533; height: 25px; width: 100%;  border-radius: 10px;"></div>
-                <div id="playerHealth"></div>
-            </div>
-            <!--Timer-->
-            <div id="timer">10</div>
-            <!--Enemy Health Bar-->
-            <div class="enemyHealthBar">
-                <div style="background: #4d3533; height: 25px;  border-radius: 10px;"></div>
-                <div id="enemyHealth"></div>
-            </div>
+<div id="parent">
+    <div id="startMenu">
+        <p class="title">SUPER COMBAT</p><br>
+        <button class="nes-btn" id="start-button" onclick="window.location.replace('gameFrame.html')">PLAY</button>
+        <button class="nes-btn" id="help-button" onclick="toggleHelp()">HELP</button>
+        <div id="help-box" style="border: 4px solid white; margin-top: 2%; color: white; margin-right: 13%; margin-left: 13%; background-color: rgba(87,62,41,0.44)">
+            <p class="help" style="font-size: 24px; margin-top: 30px; margin-bottom: 30px">How to play?</p>
+            <p>Use keys W S D to move player 1</p>
+            <p>Space Bar to perform attack for player 1</p>
+            <p>Use Arrow Keys to move player 2</p>
+            <p>Down Arrow to perform attack for player 2</p><br>
         </div>
-        <div id="endMenu">
-            <div>
-                <p id="endLable"></p>
-<!--                <button id="play_again">PLAY AGAIN</button>-->
-                <a id="play_again" class="nes-btn" href="">PLAY AGAIN</a>
-            </div>
-        </div>
-        <canvas width="1024px" height="576px"></canvas>
     </div>
-    <script src="js/config.js"></script>
-    <script src="js/util.js"></script>
-    <script src="js/class.js"></script>
-    <script src="index.js"></script>
-
-</body>
+    <button id="git"  onclick="window.open('https://github.com/prathamesh-a/SuperCombat')"> <i class="fa fa-github" style="font-size: 24px"></i> GitHub</button>
+    <canvas width="1024px" height="576px"></canvas>
+</div>
+<script src="js/index.js"></script>
+</html>

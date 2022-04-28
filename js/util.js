@@ -14,14 +14,17 @@ function getWinner({player, enemy, timerId}) {
     document.querySelector('#endMenu').style.display = 'flex'
     if (player.health === enemy.health) {
         document.querySelector('#endLable').innerHTML = 'MATCH TIED'
+        document.title = 'MATCH TIED!'
         player.dead = true
         enemy.dead = true
     }
     else if (player.health > enemy.health) {
         document.querySelector('#endLable').innerHTML = 'PLAYER 1 WON!'
+        document.title = 'PLAYER 1 WON!'
     }
     else if (player.health < enemy.health) {
         document.querySelector('#endLable').innerHTML = 'PLAYER 2 WON!'
+        document.title = 'PLAYER 2 WON!'
     }
 }
 
@@ -34,6 +37,28 @@ function timeOut() {
     else {
         getWinner({player, enemy, timerId});
     }
+}
+
+function restartGame() {
+    // Player Reset
+    player.position = {x: 110, y:180};
+    player.dead = false
+    player.image = player.sprites.idle.image
+    player.health = 100
+    document.querySelector('#playerHealth').style.width = '100%'
+
+    // Enemy Reset
+    enemy.position = {x: 850, y: 180};
+    enemy.dead = false
+    enemy.image = enemy.sprites.idle.image
+    enemy.health = 100
+    document.querySelector('#enemyHealth').style.width = '100%'
+
+    // UI Reset
+    document.querySelector('#endMenu').style.display = 'none'
+    time = 60
+    timeOut()
+
 }
 
 

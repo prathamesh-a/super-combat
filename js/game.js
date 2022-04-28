@@ -206,7 +206,10 @@ function animate() {
     }) && player.isAttacking && player.currentFrame === 2) {
         enemy.takeHit()
         player.isAttacking = false
-        document.querySelector('#enemyHealth').style.width = enemy.health + '%'
+        //document.querySelector('#enemyHealth').style.width = enemy.health + '%'
+        gsap.to('#enemyHealth', {
+            width: enemy.health + '%'
+        })
     }
 
     // Player Empty Attack Detection
@@ -219,7 +222,10 @@ function animate() {
     }) && enemy.isAttacking && enemy.currentFrame === 1) {
         player.takeHit()
         enemy.isAttacking = false
-        document.querySelector('#playerHealth').style.width = player.health + '%'
+        // document.querySelector('#playerHealth').style.width = player.health + '%'
+        gsap.to('#playerHealth', {
+            width: player.health + '%'
+        })
     }
 
     // Enemy Empty Attack Detection
