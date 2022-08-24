@@ -2,7 +2,7 @@
 
 Super Combat is a 1v1 combat game and can be played on a same device.
 
-Live Demo: https://prathamesh-a.github.io/SuperCombat/
+Live Demo: https://prathamesh-a.github.io/super-combat/
 
 Screen Shots:
 
