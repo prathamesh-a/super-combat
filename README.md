@@ -8,6 +8,7 @@ Super Combat is a multiplayer combat game where two players can play on the same
 
 ## Features
 ✅ Attack, Jump, Move
+✅ Time Limit
 ✅ Attack Animation
 ✅ Death Animation
 ✅ Damage Animation
